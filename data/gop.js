@@ -1,0 +1,1 @@
+var chart_data_gop = {'gop_terms': {'labels': ['unmask', 'leak', 'flynn', 'russia', 'fbi', 'department of justice', 'trump', 'lie', 'white house'], 'values': [25, 15, 27, 45, 19, 21, 20, 35, 8]}, 'gop_overall': {'labels': ['would', 'know', 'information', 'intelligence', 'well', 'general', 'think', 'order', 'one'], 'values': [72, 55, 54, 45, 42, 39, 33, 32, 31]}};

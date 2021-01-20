@@ -1,0 +1,319 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Trump Tweet Track - 100 Days</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Local Chart Data -->
+        <script src="data/data_100.js"></script>
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+        <!-- Font Awesome -->
+        <script src="https://use.fontawesome.com/fe0bbfbd82.js"></script>
+        <!-- Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <div class="container">
+        <header>
+<!--Navigation bar-->
+
+<div w3-include-html="nav.html"></div>
+
+
+<!--end of Navigation bar-->
+            <div class="jumbotron">
+            <div class="text-center">
+              <h1 class="extraH1 zoom-in">GREAT</h1>
+              <p>...was the best word of Donald Trump's first 100 days, with 39 uses in 265 likely tweets.</p>
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                  <p><span class="h4">Next were: </span>
+                  fake <span class="badge">36</span> | 
+                  big <span class="badge">33</span> | 
+                  news <span class="badge">31</span> | 
+                  media <span class="badge">26</span></p>
+                  </div>
+                  </div>
+            </div>
+            </div>
+        </header>
+              <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>Who wrote the tweets <span class="text-muted"> for @realDonaldTrump?</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Donald Trump probably doesn't write every tweet from <a href="https://twitter.com/realDonaldTrump">@realDonaldTrump</a> himself. Our analysis is focused on the tweets he most likely wrote, using our own scoring algorithm to detect his language, timing and Twitter habits. In his first 100 days, this is how tweets break down by likely author: </p>
+                            <hr />
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById("myChart").getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'doughnut',
+                              options: { 
+                                legend: {labels:{fontColor:"white", fontSize: 16}},
+                                title: {display:false, fontSize: 18, text:"Tweets by likely author"}
+                                },
+                              data: {
+                                labels: chartData.authors.labels,
+                                datasets: [{
+                                  backgroundColor: [
+                                    "#2ecc71",
+                                    "transparent"
+                                  ],
+                                  data: chartData.authors.values
+                                }]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+               <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="featurette-heading flex-center-vertically">How often does he tweet? <span class="text-muted">Week-by-week numbers.</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="weeklyTweetBar" width="400" height="400"></canvas>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('weeklyTweetBar').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Weekly Totals"}
+                                    },
+                                
+
+                              data: {
+                                labels: chartData.weekly.labels,
+                                datasets: [{
+                                  label: 'Tweets',
+                                  data: chartData.weekly.values,
+                                  backgroundColor: "#2ecc71",
+                                }]
+                              }
+                            });
+                            </script>
+                            <hr />
+                            <p>Every week since his inauguration, we've been tracking the number of tweets likely from Mr. Trump, starting with January 20, 2017. Above, you can see totals for each week.</p>
+                        </div>
+                    </div>
+                </div>
+               <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="featurette-heading flex-center-vertically">He knows words. <span class="text-muted">The best words.</span></h3>
+                        </div>
+                        <div class="panel-body">
+                          <p>Mr. Trump seems to pride himself on developing the perfect catch-phrase or unique term to capture a person or institution -- particularly in the context of attacking a core vulnerability. We are tracking a few core terms here and counting their appearances in tweets since his inauguration:</p>
+                          <hr />
+                            <canvas id="wordsBar" width="400" height="400"></canvas>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('wordsBar').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Unique Phrase Use"}
+                                    },
+                              data: {
+                                labels: chartData.unique_terms.labels,
+                                datasets: [{
+                                  label: 'Uses',
+                                  data: chartData.unique_terms.values,
+                                  backgroundColor: "#2ecc71",
+                                }]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ROW END -->
+            <div class="row">
+             <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>There's more fake than the news,<span class="text-muted"> but mostly the news.</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="fakeBar" width="400" height="400"></canvas>
+                            <hr />
+                            <p>Mr. Trump used the term "fake news" a lot his first 100-days, but some news was more fake than others. Here are the top ten terms used most often with "fake" in his tweets. As you can see, not all news organizations and topics are created equal. </p>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('fakeBar').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Unique Phrase Use"}
+                                    },
+                              data: {
+                                labels: chartData['fake'].labels,
+                                datasets: [{
+                                  label: 'Uses',
+                                  data: chartData.fake.values,
+                                  backgroundColor: "#2ecc71",
+                                }]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <h2 class="featurette-heading">The more things change, <span class="text-muted">the more they stay the same.</span></h2>
+                  <br/>
+                  <p class="lead">Our models are based on roughly one year of tweets from @realDonaldTrump. In his first 100-days in office, some things have changed in his Twitter use -- most significantly trading in his old Android for a new iPhone as his Tweet-vehicle of choice.</p>
+                  <p class="lead">But even taking on the highest office in the land wasn't enough to really change Mr. Trump's Twitter habits. His language, timing and tactics remains remarkably similar to before his inauguration and consistent in many ways with David Robinson's <a href="http://varianceexplained.org/r/trump-tweets/">great analysis</a> from last year.</p>
+                </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>Sleep is for losers. <span class="text-muted">And probably staffers.</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="timeLine" width="400" height="400"></canvas>
+                            <hr />
+                            <p>One of the biggest differences between a tweet directly from Mr. Trump versus those of his staffers is time. This held true in his first 100-days. You can see the difference in likely tweets from Mr. Trump since inauguration -- peaking roughly 6am-10am (GMT-4) -- versus those of his staffers during the more normal business hours of 11am-7pm. (Chart times are GMT.) </p>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('timeLine').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'line',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Unique Phrase Use"}
+                                    },
+                              data: {
+                                labels: chartData['times'].labels,
+                                datasets: [{
+                                  label: 'Mr. Trump',
+                                  data: chartData.times.trump,
+                                  borderColor: "#2ecc71",
+                                },
+                                  {
+                                  label: 'Others',
+                                  data: chartData.times.other,
+                                  borderColor: "white",}]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <hr class="featurette-divider">
+        <div class="row featurette" id="about">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="featurette-heading">About this site</h2>
+                    <hr class="primary">
+                    <p class="lead">Donald Trump famously said in late 2016, <a href="http://dailycaller.com/2015/12/30/trump-i-know-words-i-have-the-best-words-obama-is-stupid-video/">"I know words, I have the best words." </a>This site's goal is to analyze the words he uses in public forums, particularly on Twitter. We're in they very early stages. Please feel free to check back often, and for regular updates and analysis, <a href="https://twitter.com/trumptweettrac">follow us on Twitter.</a></p>
+                    <hr class="primary">
+                    <p class="lead">Come back every Monday for an update on Mr. Trump's new "word of the week."</p>
+                    <hr class="primary">
+                    <p class="lead">More features soon! Feel free to reach out with questions or feedback: trumptweettrack@gmail.com</p>
+                </div>
+        </div>
+
+        <!-- Footer -->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright © Trump Tweet Track 2017</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+        </div>
+        <script>
+        w3.includeHTML();
+        </script>
+
+        <!-- Google Analytics -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-92947975-1','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

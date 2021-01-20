@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Trump Tweet Track - Tweetboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <!-- Font Awesome -->
+        <script src="https://use.fontawesome.com/fe0bbfbd82.js"></script>
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <div class="container-fluid">
+
+        <header>
+<!--Navigation bar-->
+
+<div w3-include-html="nav.html"></div>
+
+
+<!--end of Navigation bar-->
+</header>
+        <div class="row text-center" id="dashboard">
+            <div class="col-lg-12">
+                <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="http://trumptweettrack.com/_plugin/kibana/app/kibana#/dashboard/Tweetboard1?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'2017-01-20T05%3A00%3A00.000Z'%2Cmode%3Aabsolute%2Cto%3Anow))" height="2000" width="1600"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright © Trump Tweet Track 2020</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+        <script>
+        w3.includeHTML();
+        </script>
+
+        <!-- Google Analytics -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-92947975-1','auto');ga('send','pageview');
+        </script>
+        </div>
+    </body>
+</html>

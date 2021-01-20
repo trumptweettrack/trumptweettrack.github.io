@@ -1,0 +1,271 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Trump Tweet Track - 100 Days</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Local Chart Data -->
+        <script src="data/dem.js"></script>
+        <script src="data/gop.js"></script>
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <!-- Font Awesome -->
+        <script src="https://use.fontawesome.com/fe0bbfbd82.js"></script>
+        <!-- Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <div class="container">
+
+        <header>
+                      <nav class="navbar navbar-default">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="index.html">Trump Tweet Track</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="https://blog.trumptweettrack.com">Blog</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tweetboards <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                          <li><a href="tweetboard.html">Since Inauguration</a></li>
+                          <li><a href="all-time.html">All-Time (2009)</a></li>
+                          <li><a href="fakenews.html">Fake News</a></li>
+                          <li><a href="deleted.html">Deleted Tweets</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Features <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="100.html">100 Days</a></li>
+                        <li class="active"><a href="russia.html">Russia Hearings <span class="sr-only">(current)</span></a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#about">About</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://blog.trumptweettrack.com"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li><li><a href="https://twitter.com/trumptweettrac"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <div class="jumbotron">
+            <div class="text-center">
+              <h1>Senate Judiciary Subcommittee Hearing</h1>
+              <p>...on Russian interference in the 2016 presidential election.</p>
+              <span class="date">Monday, May 8, 2017</span></p>
+            </div>
+            </div>
+        </header>
+            <div class="row">
+                <div class="col-md-6">
+                  <h2 class="featurette-heading">A tale of two hearings <span class="text-muted">at the same time.</span></h2>
+                  <br/>
+                  <p class="lead">We've analyzed words used in the hearings during the question and answer time of each party. As you can see, terms used during the Democratic time (blue) vary significantly from the terms used in Republican time (red).</p>
+                  <p class="lead">Here, we've chosen some key words that were actively used by both parties during the hearing to focus on specific topics.</p>
+                  <p class="lead">These counts are based on a transcript <a href="https://www.washingtonpost.com/news/post-politics/wp/2017/05/08/full-transcript-sally-yates-and-james-clapper-testify-on-russian-election-interference/?utm_term=.fd9b7bb9977f">published by the Washington Post</a>.
+                </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><span class="text-muted">Key terms used during question time, </span>divided by party.</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="gopterms" width="400" height="400"></canvas>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('gopterms').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Unique Phrase Use"}
+                                    },
+                              data: {
+                                labels: chart_data_gop.gop_terms.labels,
+                                datasets: [{
+                                  label: 'GOP',
+                                  data: chart_data_gop.gop_terms.values,
+                                  backgroundColor: "#e60000",
+                                },
+                                {
+                                  label: 'Dem',
+                                  data: chart_data_dem.dem_terms.values,
+                                  backgroundColor: "#0033cc",
+                                }]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+             <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><span class="text-muted">Top overall words used during </span>Democratic time.</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="demoverall" width="400" height="400"></canvas>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('demoverall').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Unique Phrase Use"}
+                                    },
+                              data: {
+                                labels: chart_data_dem.dem_overall.labels,
+                                datasets: [{
+                                  label: 'Uses',
+                                  data: chart_data_dem.dem_overall.values,
+                                  backgroundColor: "#0033cc",
+                                }]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <h2 class="featurette-heading">The partisan divide <span class="text-muted">is intact.</span></h2>
+                  <br/>
+                  <p class="lead">Above, we've matched some key terms that include multiple matches (word stems). For example, above 'leak' will include instances of 'leak' along with 'leaks' and 'leaker' in the count.</p>
+                  <p class="lead">Here, we are strictly counting the words used by each party. While the top words are the same, you can see there are still significant differences between the parties.</p>
+                </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><span class="text-muted">Top overall words used during </span>Republican time.</h3>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="gopoverall" width="400" height="400"></canvas>
+                            <script type="text/javascript">
+                            var ctx = document.getElementById('gopoverall').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              options: {
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                  fontColor: "white",
+                                                  fontSize: 12,
+                                                }
+                                            }]
+                                        },
+                                    legend: {labels:{fontColor:"white", fontSize: 12}},
+                                    title: {display:false, fontSize: 18, text:"Unique Phrase Use"}
+                                    },
+                              data: {
+                                labels: chart_data_gop.gop_overall.labels,
+                                datasets: [{
+                                  label: 'Uses',
+                                  data: chart_data_gop.gop_overall.values,
+                                  backgroundColor: "#e60000",
+                                }]
+                              }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <hr class="featurette-divider">
+        <div class="row featurette" id="about">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="featurette-heading">About this page</h2>
+                    <hr class="primary">
+                    <p class="lead">This site is part of a larger effor to track the language used by Mr. Trump, primarily on Twitter. Please feel free to enjoy our other features, and for regular updates and analysis, <a href="https://twitter.com/trumptweettrac">follow us on Twitter.</a></p>
+                    <p class="lead">Come back every Monday for an update on Mr. Trump's new "word of the week."</p>
+                    <hr class="primary">
+                    <p class="lead">More features soon! Feel free to reach out with questions or feedback: trumptweettrack@gmail.com</p>
+                </div>
+        </div>
+
+        <!-- Footer -->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright © Trump Tweet Track 2017</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+        </div>
+        <script>
+        w3.includeHTML();
+        </script>
+
+        <!-- Google Analytics -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-92947975-1','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

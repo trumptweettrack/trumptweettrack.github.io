@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Trump Tweet Track</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+        <!-- Chart.js -->
+        <script src="js/vendor/Chart.min.js"></script>
+
+        <!-- Handlebars -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
+        <!-- Font Awesome -->
+        <script src="https://use.fontawesome.com/fe0bbfbd82.js"></script>
+
+        <!-- Local Chart Data -->
+        <script src="./data/data.js"></script>
+
+        <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,700,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/weather.css">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="./js/plugins.js"></script>
+        <script src="./data/context.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="./data/weather.js"></script>
+        <script src="./data/time.js"></script>
+        
+        <script src="./js/vendor/bootstrap.min.js"></script>
+
+        <div class="container">
+            <header>
+<!--Navigation bar-->
+
+<div w3-include-html="nav.html"></div>
+
+
+<!--end of Navigation bar-->
+
+            <div class="jumbotron">
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+    <h2>Current Conditions:</h2>
+    <div id='current-weather'>
+      </div>
+<script id="current-template" type="text/x-handlebars-template">
+<div align="center">{{{icon_html}}}</div>
+<hr />
+<p align="center">{{conditions}}</p>
+</script>
+
+
+<hr />
+<h4 align="center">Time since last tweet: 
+<div id="time-elapsed"></div></h4>
+
+
+</div>
+  <div class="col-md-8 col-sm-6">
+    <h3>Upcoming Forecast:</h3>
+    <div id="future-weather" class="row">
+    </div>
+        <script id="future-template" type="text/x-handlebars-template">
+          {{#each future}}
+          <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="panel panel-weather">
+            <div class="panel-heading">
+              <h5>{{time}}</h5>
+            </div>
+            <div class="panel-body">
+              <div class="icons">
+                {{{future_icons}}}
+              </div>
+          <p>{{future_condition}}</p>
+          </div>
+          </div>
+          </div>
+          {{/each}}
+          </script>
+  </div>
+</div>
+          </header>
+        <hr class="featurette-divider">
+                    <div class="row">
+
+                <div class="col-md-4, col-sm-6">
+                  <h2 class="featurette-heading">How to read <span class="text-muted"> Trump Weather Service reports</span></h2>
+                  <br/>
+                  <p class="lead"><b>Current:</b> includes the probability that Donald Trump posted the tweet, himself, based on our Machine Learning model trained from Donald Trump's historical Twitter use.</p>
+                  <p class="lead"><b>Tweet Forecast:</b> is some random nonsense spit out by a bot we trained to write English based ONLY on reading Donald Trump's past tweets. This Forecast can also be replaced by statistics and other information.</p>
+                </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                  <img src="images/sampleWeather.png" />
+              </div>
+                </div>
+            </div>
+        <hr class="featurette-divider">
+                <div class="row">
+                  <div class="col-md-9 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>Trump Tweetstorm Scale <span class="text-muted">rated by Tweets-Per-Hour (TPH)</h3>
+                        </div>
+                        <div class="panel-body">
+                          <table class="table table-striped table-hover table-features">
+                            <thead>
+                              <tr>
+                                <th>TPH</th>
+                                <th>Status</th>
+                                <th>Recommended Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Partly cloudy with scattered tweets</td>
+                                <td>Pack an umbrella</td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>Cloudy with regular tweets</td>
+                                <td>Monitor the situation for further developments</td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Category 1 Tweetstorm</td>
+                                <td>Make an action plan with your family in case the situation escalates</td>
+                              </tr>
+                              <tr>
+                                <td>4</td>
+                                <td>Category 2 Tweetstorm</td>
+                                <td>Stay inside and avoid travel if possible, remain calm</td>
+                              </tr>
+                              <tr>
+                                <td>5</td>
+                                <td>Category 3 Tweetstorm</td>
+                                <td>Contact friends and family more vulnerable to disinformation</td>
+                              </tr>
+                              <tr>
+                                <td>6</td>
+                                <td>Category 4 Tweetstorm</td>
+                                <td>Brace for high volumes of nonsense, disable unnecessary notifications</td>
+                              </tr>
+                              <tr>
+                                <td>7</td>
+                                <td>Category 5 Tweetstorm</td>
+                                <td>Enact your family plan, find cover until the Tweetstorm passes</td>
+                              </tr>
+                              <tr>
+                                <td>8</td>
+                                <td>Unpresidented Tweetstorm</td>
+                                <td>Take cover immediately, shelter in place</td>
+                              </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <h2 class="featurette-heading"><span class="text-muted">The official </span> Tweetstorm tracking scale</span></h2>
+                  <br/>
+                  <p class="lead">We track the intensity of Donald Trump's Tweetstorms using our official T-scale, based on the number of tweets-per-hour issued by the @realdonaldtrump Twitter account. The more tweets, the higher the storm rating.</p>
+                  <p>
+                </div>
+            </div>
+      
+        <hr class="featurette-divider">
+        <div class="row-featurette" id="about">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="featurette-heading">About this page</h2>
+                    <hr class="primary">
+                    <p class="lead">The mission of Trump Tweet Track is to track President Donald J. Trump's use of Twitter. This page is the home of the Trump Weather Service -- a real-time weather reporting system based on the current status of @realdonaldtrump's Twitter account.</p>
+                    <p class="lead">For regular updates and analysis, <a href="index.html">check out or main site</a>, <a href="https://blog.trumptweettrack.com">have a look at our blog</a> where we provide analysis on every Trump tweet in real time, or <a href="https://twitter.com/trumptweettrac">follow us on Twitter.</a></p>
+                    <hr class="primary">
+                    <p class="lead">More data soon! Feel free to reach out with questions or feedback: trumptweettrack@gmail.com</p>
+                </div>
+        </div>
+
+        <!-- Footer -->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright © Trump Tweet Track 2017</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+        </div>
+        <script src="js/weather_render.js"></script>
+        <script src="js/clock.js"></script>
+        <script>
+        w3.includeHTML();
+        </script>
+        <!-- Google Analytics -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-92947975-1','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

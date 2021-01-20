@@ -1,0 +1,1 @@
+var chart_data_dem = {'dem_terms': {'labels': ['unmask', 'leak', 'flynn', 'russia', 'fbi', 'department of justice', 'trump', 'lie', 'white house'], 'values': [4, 2, 70, 77, 30, 16, 29, 39, 69]}, 'dem_overall': {'labels': ['would', 'general', 'house', 'flynn', 'white', 'well', 'president', 'know', 'security'], 'values': [75, 72, 71, 70, 70, 65, 54, 49, 48]}};
